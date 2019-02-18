@@ -1,0 +1,14 @@
+{
+    "name": "timoschinkel/codeowners",
+    "description": "A utility to parse and apply CODEOWNERS files",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "CodeOwners\\": "src",
+            "CodeOwners\\Tests\\": "tests"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    }
+}
