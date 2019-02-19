@@ -34,12 +34,6 @@ final class PatternMatcher implements PatternMatcherInterface
 
     private function isMatch(Pattern $pattern, string $filename): bool
     {
-        if (false && mb_strpos($pattern->getPattern(), '/') === false) {
-            // If the pattern does not contain a slash /, [lib] treats it as a shell glob pattern and checks for a match
-            // against the pathname relative to the root directory.
-            $filename = basename($filename);
-        }
-
         // *            => [^/]+
         // ?            => [^/]
         // [<range>]    => [<range>]
