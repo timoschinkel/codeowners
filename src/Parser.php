@@ -44,6 +44,10 @@ final class Parser
         return $patterns;
     }
 
+    /**
+     * @param string $file
+     * @return resource
+     */
     private function getReadHandle(string $file)
     {
         if (file_exists($file) === false) {
