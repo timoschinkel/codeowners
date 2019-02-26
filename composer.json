@@ -1,6 +1,6 @@
 {
     "name": "timoschinkel/codeowners",
-    "description": "A utility to parse and apply CODEOWNERS files",
+    "description": "A parser and matcher for the codeowners file as used by Github, Gitlab and Bitbucket.",
     "require": {},
     "autoload": {
         "psr-4": {
