@@ -29,7 +29,8 @@ class PatternMatcherTest extends TestCase
         );
     }
 
-    public function provideCorrectMatchIsReturnedForFilename(): array {
+    public function provideCorrectMatchIsReturnedForFilename(): array
+    {
         return [
             [new Pattern('foo', ['@owner']), 'foo'],
             [new Pattern('foo', ['@owner']), 'foo/file.ext'],

@@ -19,8 +19,7 @@ final class PatternMatcher implements PatternMatcherInterface
     {
         $matchedPatterns = array_filter(
             $this->patterns,
-            function(Pattern $pattern) use ($filename): bool
-            {
+            function (Pattern $pattern) use ($filename): bool {
                 return $this->isMatch($pattern, $filename);
             }
         );
@@ -52,7 +51,7 @@ final class PatternMatcher implements PatternMatcherInterface
             PREG_SPLIT_DELIM_CAPTURE
         );
 
-        $regex = join(array_map(function(string $part) use ($delimiter): string{
+        $regex = join(array_map(function (string $part) use ($delimiter): string {
             $replacements = [
                 '*' => '[^\/]+',
                 '?' => '[^\/]',
@@ -71,7 +70,8 @@ final class PatternMatcher implements PatternMatcherInterface
 
         if (mb_substr($regex, -1, 1) === '/') {
             $regex = mb_substr($regex, 0, -1) . '\/.+$';
-        } elseif (mb_substr($pattern->getPattern(), -1, 1) === '*' && mb_substr($pattern->getPattern(), -2, 1) !== '*') {
+        } elseif (mb_substr($pattern->getPattern(), -1, 1) === '*'
+            && mb_substr($pattern->getPattern(), -2, 1) !== '*') {
             $regex = $regex . '$';
         } else {
             $regex = $regex . '(\/.+)?$';
