@@ -77,10 +77,6 @@ final class PatternMatcher implements PatternMatcherInterface
             $regex = $regex . '(\/.+)?$';
         }
 
-//        die(var_dump(__METHOD__, __LINE__, mb_substr($pattern->getPattern(), -1, 1), mb_substr($pattern->getPattern(), -2, 1)));
-
-//        die(var_dump(__METHOD__, __LINE__, $regex, $filename));
-
         return preg_match($delimiter . $regex . $delimiter . 's', $filename) === 1;
     }
 }
