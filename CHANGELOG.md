@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2019-02-26
+### Added
+- `vimeo/psalm` as development dependency
+- `squizlabs/php_codesniffer` as development dependency
+- Docblock for `\CodeOwners\Parser::getReadHandle()` as `resource` cannot be type hinted
+- `.gitattributes` to prevent unnecessary files in archive
+
+### Changed
+- Apply fixes to be compliant with PSR-2 coding style
+
 ## [0.1.0] - 2019-02-26
 ### Added
 - Initial version of code, including unit tests
