@@ -20,7 +20,7 @@ final class Parser
         while ($line = fgets($handle)) {
             $line = trim($line);
 
-            if (mb_substr($line, 0, 1) === '#') {
+            if (substr($line, 0, 1) === '#') {
                 // comment
                 continue;
             }
@@ -30,14 +30,10 @@ final class Parser
                 continue;
             }
 
-            if (preg_match('/^(?P<file_pattern>[^\s]+)\s+(?P<owners>.+)$/si', $line, $matches) === 0) {
-                // unable to read line, might be empty
-                // todo Maybe this deserves an exception
-                continue;
+            if (preg_match('/^(?P<file_pattern>[^\s]+)\s+(?P<owners>.+)$/si', $line, $matches) !== 0) {
+                $owners = preg_split('/\s+/', $matches['owners']);
+                $patterns[] = new Pattern($matches['file_pattern'], $owners);
             }
-
-            $owners = array_map('trim', preg_split('/\s+/', $matches['owners']));
-            $patterns[] = new Pattern($matches['file_pattern'], $owners);
         }
         fclose($handle);
 

@@ -19,18 +19,21 @@ class ParserTest extends TestCase
     public function testParsingNonExistingFileThrowsException()
     {
         self::expectException(UnableToParseException::class);
+        self::expectExceptionMessageRegExp('/does not exist/si');
         (new Parser())->parse(NON_EXISTING_FILE);
     }
 
     public function testParsingNonReadableFileThrowsException()
     {
         self::expectException(UnableToParseException::class);
+        self::expectExceptionMessageRegExp('/is not readable/si');
         (new Parser())->parse(NON_READABLE_FILE);
     }
 
     public function testParsingNonOpenableFileThrowsException()
     {
         self::expectException(UnableToParseException::class);
+        self::expectExceptionMessageRegExp('/unable to create a reading resource/si');
         (new Parser())->parse(NON_OPENABLE_FILE);
     }
 
