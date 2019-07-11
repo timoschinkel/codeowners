@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2019-07-1
+Updated the source after mutation testing with [Infection](https://github.com/infection/infection)
+
+### Changed 
+- Replaced some occurrences of `mb_substr` with `substr` as prior checks ensure no multi byte characters are in the string
+- Changed some testing expectations to be more strict
+
 ## [0.2.0] - 2019-02-26
 ### Added
 - `vimeo/psalm` as development dependency
