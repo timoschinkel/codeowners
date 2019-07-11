@@ -10,6 +10,9 @@ final class PatternMatcher implements PatternMatcherInterface
     /** @var Pattern[] */
     private $patterns;
 
+    /** @var int */
+    private const NO_LIMIT = -1;
+
     public function __construct(Pattern ...$patterns)
     {
         $this->patterns = $patterns;
@@ -33,6 +36,8 @@ final class PatternMatcher implements PatternMatcherInterface
 
     private function isMatch(Pattern $pattern, string $filename): bool
     {
+        // This method converts the pattern to a regular expression using the following guidelines:
+        //
         // *            => [^/]+
         // ?            => [^/]
         // [<range>]    => [<range>]
@@ -47,7 +52,7 @@ final class PatternMatcher implements PatternMatcherInterface
         $parts = preg_split(
             '/(\/?\*\*\/?)|(\*)|\?|(\[.+?\])/i',
             $pattern->getPattern(),
-            -1,
+            self::NO_LIMIT,
             PREG_SPLIT_DELIM_CAPTURE
         );
 
@@ -62,16 +67,18 @@ final class PatternMatcher implements PatternMatcherInterface
             return $replacements[$part] ?? preg_quote($part, $delimiter);
         }, $parts));
 
-        if (mb_substr($regex, 0, 1) === '/') {
-            $regex = '^' . mb_substr($regex, 1);
+        // check whether the regex starts with `/`
+        if (substr($regex, 0, 1) === '/') {
+            $regex = '^' . substr($regex, 1);
         } else {
             $regex = '^(.+\/)?' . $regex;
         }
 
-        if (mb_substr($regex, -1, 1) === '/') {
-            $regex = mb_substr($regex, 0, -1) . '\/.+$';
-        } elseif (mb_substr($pattern->getPattern(), -1, 1) === '*'
-            && mb_substr($pattern->getPattern(), -2, 1) !== '*') {
+        // check whether the pattern ends with a `/`
+        if (substr($regex, -1) === '/') {
+            $regex = substr($regex, 0, -1) . '\/.+$';
+            // or whether the pattern ends with `*`, but not with `**`
+        } elseif (preg_match('/[^\*]+\*$/s', $pattern->getPattern()) === 1) {
             $regex = $regex . '$';
         } else {
             $regex = $regex . '(\/.+)?$';

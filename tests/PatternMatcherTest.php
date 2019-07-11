@@ -61,12 +61,14 @@ class PatternMatcherTest extends TestCase
             // does NOT match "foo/ext
             [new Pattern('foo/*', ['@owner']), 'foo/file.ext'],
             [new Pattern('foo/*', ['@owner']), 'bar/foo/file.ext'],
+            [new Pattern('foo/*/*', ['@owner']), 'bar/foo/biz/file.ext'],
             // does NOT match "foo/bar/file.ext"
 
             // **
             [new Pattern('a/**/b', ['@owner']), 'a/b'],
             [new Pattern('a/**/b', ['@owner']), 'a/x/b'],
             [new Pattern('a/**/b', ['@owner']), 'a/x/y/b'],
+            [new Pattern('a/**/b/**/c', ['@owner']), 'a/x/y/b/x/y/c'],
         ];
     }
 
@@ -116,6 +118,7 @@ class PatternMatcherTest extends TestCase
 
             // leading and trailing slash
             [new Pattern('/foo/', ['@owner']), 'foo'],
+            [new Pattern('/foo/', ['@owner']), 'bar/foo/biz'],
 
             // *
             [new Pattern('*.ext', ['@owner']), 'foo/fileext'],
