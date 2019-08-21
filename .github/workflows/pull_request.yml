@@ -1,0 +1,22 @@
+name: Validate
+
+on: [pull_request]
+
+jobs:
+  test:
+    name: "PHP version ${{ matrix.php_version }}"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php_version: [7.2, 7.3]
+    steps:
+    - uses: actions/checkout@v1
+    - uses: franzliedke/gh-action-php@0.2.0
+    - name: composer install
+      run: composer install
+    - name: PHP CodeSniffer
+      run: php${{ matrix.php_version}} ./vendor/bin/phpcs
+    - name: Psalm
+      run: php${{ matrix.php_version}} ./vendor/bin/psalm
+    - name: run unit tests
+      run: php${{ matrix.php_version}} ./vendor/bin/phpunit
