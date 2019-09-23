@@ -2,7 +2,9 @@
     "name": "timoschinkel/codeowners",
     "description": "A parser and matcher for the codeowners file as used by Github, Gitlab and Bitbucket.",
     "license": "Apache-2.0",
-    "require": {},
+    "require": {
+        "php": "^7.1"
+    },
     "autoload": {
         "psr-4": {
             "CodeOwners\\": "src",
