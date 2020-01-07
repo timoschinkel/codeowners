@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CodeOwners\Tests\Fixtures {
@@ -17,7 +18,6 @@ namespace CodeOwners\Tests\Fixtures {
     }
 
 }
-
 namespace CodeOwners {
 
     use const CodeOwners\Tests\Fixtures\NON_EXISTING_FILE;
