@@ -4,7 +4,7 @@
     <arg name="colors"/>
     <arg value="s"/>
 
-    <rule ref="PSR2" />
+    <rule ref="PSR12" />
 
     <file>src/</file>
     <file>tests/</file>

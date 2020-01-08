@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace CodeOwners\Tests;
@@ -7,10 +8,11 @@ use CodeOwners\Exception\UnableToParseException;
 use CodeOwners\Parser;
 use CodeOwners\Pattern;
 use CodeOwners\Tests\Fixtures\FileOperations;
+use PHPUnit\Framework\TestCase;
+
 use const CodeOwners\Tests\Fixtures\NON_EXISTING_FILE;
 use const CodeOwners\Tests\Fixtures\NON_OPENABLE_FILE;
 use const CodeOwners\Tests\Fixtures\NON_READABLE_FILE;
-use PHPUnit\Framework\TestCase;
 
 class ParserTest extends TestCase
 {
