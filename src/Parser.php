@@ -6,7 +6,7 @@ namespace CodeOwners;
 
 use CodeOwners\Exception\UnableToParseException;
 
-final class Parser
+final class Parser implements ParserInterface
 {
     /**
      * @param string $file
