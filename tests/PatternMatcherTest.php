@@ -13,7 +13,7 @@ class PatternMatcherTest extends TestCase
 {
     public function testNoMatchesWillThrowException()
     {
-        self::expectException(NoMatchFoundException::class);
+        $this->expectException(NoMatchFoundException::class);
         (new PatternMatcher())->match('non-existing.file');
     }
 
@@ -24,7 +24,7 @@ class PatternMatcherTest extends TestCase
      */
     public function testCorrectMatchIsReturnedForFilename(Pattern $pattern, string $filename): void
     {
-        self::assertEquals(
+        $this->assertEquals(
             $pattern,
             (new PatternMatcher($pattern))->match($filename)
         );
@@ -83,7 +83,7 @@ class PatternMatcherTest extends TestCase
 
         $match = $matcher->match('src/foo/bar/MyClass.php');
 
-        self::assertEquals(['@owner-of-foo-bar'], $match->getOwners());
+        $this->assertEquals(['@owner-of-foo-bar'], $match->getOwners());
     }
 
     /**
@@ -96,9 +96,9 @@ class PatternMatcherTest extends TestCase
         try {
             (new PatternMatcher($pattern))->match($filename);
 
-            self::assertTrue(false, 'Pattern "' . $pattern->getPattern() . '" matches "' . $filename . '"');
+            $this->assertTrue(false, 'Pattern "' . $pattern->getPattern() . '" matches "' . $filename . '"');
         } catch (NoMatchFoundException $exception) {
-            self::assertTrue(true);
+            $this->assertTrue(true);
         }
     }
 
