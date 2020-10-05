@@ -3,7 +3,7 @@
     "description": "A parser and matcher for the codeowners file as used by Github, Gitlab and Bitbucket.",
     "license": "Apache-2.0",
     "require": {
-        "php": "^7.1"
+        "php": "^7.3 || ^8.0"
     },
     "autoload": {
         "psr-4": {
