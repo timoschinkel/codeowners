@@ -6,9 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.2.0] - 2020-11-29
 ### Updated
-- Update PHPUnit from `^7.5` to `^9.4` in order to support PHPUnit
+- Update PHPUnit from `^7.5` to `^9.4` in order to support PHP 8
 - Update PHP version requirement to `^7.3 || ^8.0`
 - Run Travis on PHP versions 7.3, 7.4 and 8.0
+- Update Psalm from `^3.0` to `^4.2`
 
 ## [1.1.0] - 2020-01-10
 ### Added
