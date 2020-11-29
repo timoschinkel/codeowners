@@ -20,22 +20,22 @@ class ParserTest extends TestCase
 
     public function testParsingNonExistingFileThrowsException()
     {
-        self::expectException(UnableToParseException::class);
-        self::expectExceptionMessageRegExp('/does not exist/si');
+        $this->expectException(UnableToParseException::class);
+        $this->expectExceptionMessageMatches('/does not exist/si');
         (new Parser())->parse(NON_EXISTING_FILE);
     }
 
     public function testParsingNonReadableFileThrowsException()
     {
-        self::expectException(UnableToParseException::class);
-        self::expectExceptionMessageRegExp('/is not readable/si');
+        $this->expectException(UnableToParseException::class);
+        $this->expectExceptionMessageMatches('/is not readable/si');
         (new Parser())->parse(NON_READABLE_FILE);
     }
 
     public function testParsingNonOpenableFileThrowsException()
     {
-        self::expectException(UnableToParseException::class);
-        self::expectExceptionMessageRegExp('/unable to create a reading resource/si');
+        $this->expectException(UnableToParseException::class);
+        $this->expectExceptionMessageMatches('/unable to create a reading resource/si');
         (new Parser())->parse(NON_OPENABLE_FILE);
     }
 
@@ -43,7 +43,7 @@ class ParserTest extends TestCase
     {
         $patterns = (new Parser())->parse(__DIR__ . '/Fixtures/CODEOWNERS.example');
 
-        self::assertEquals([
+        $this->assertEquals([
             new Pattern('*', ['@global-owner1', '@global-owner2']),
             new Pattern('*.js', ['@js-owner']),
             new Pattern('*.go', ['docs@example.com']),
