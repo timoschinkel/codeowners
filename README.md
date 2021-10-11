@@ -14,6 +14,8 @@ composer require timoschinkel/codeowners
 
 ## Usage
 
+Parse `CODEOWNERS` file:
+
 ```php
 <?php
 
@@ -21,7 +23,25 @@ use CodeOwners\Parser;
 use CodeOwners\PatternMatcher;
 
 try {
-    $patterns = (new Parser())->parse($filename);
+    $patterns = (new Parser())->parseFile($filename);
+    $pattern = (new PatternMatcher(...$patterns))->match($filename);
+} catch (\CodeOwners\Exception\UnableToParseException $exception) {
+    // unable to read or parse file
+} catch (\CodeOwners\Exception\NoMatchFoundException $exception) {
+    // no match found
+}
+```
+
+Alternatively, parsing a string directly is also supported:
+
+```php
+<?php
+
+use CodeOwners\Parser;
+use CodeOwners\PatternMatcher;
+
+try {
+    $patterns = (new Parser())->parseString($contents);
     $pattern = (new PatternMatcher(...$patterns))->match($filename);
 } catch (\CodeOwners\Exception\UnableToParseException $exception) {
     // unable to read or parse file
