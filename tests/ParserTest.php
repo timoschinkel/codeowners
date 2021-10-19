@@ -22,26 +22,41 @@ class ParserTest extends TestCase
     {
         $this->expectException(UnableToParseException::class);
         $this->expectExceptionMessageMatches('/does not exist/si');
-        (new Parser())->parse(NON_EXISTING_FILE);
+        (new Parser())->parseFile(NON_EXISTING_FILE);
     }
 
     public function testParsingNonReadableFileThrowsException()
     {
         $this->expectException(UnableToParseException::class);
         $this->expectExceptionMessageMatches('/is not readable/si');
-        (new Parser())->parse(NON_READABLE_FILE);
+        (new Parser())->parseFile(NON_READABLE_FILE);
     }
 
     public function testParsingNonOpenableFileThrowsException()
     {
         $this->expectException(UnableToParseException::class);
         $this->expectExceptionMessageMatches('/unable to create a reading resource/si');
-        (new Parser())->parse(NON_OPENABLE_FILE);
+        (new Parser())->parseFile(NON_OPENABLE_FILE);
     }
 
     public function testParsingResultsInPatterns()
     {
-        $patterns = (new Parser())->parse(__DIR__ . '/Fixtures/CODEOWNERS.example');
+        $patterns = (new Parser())->parseFile(__DIR__ . '/Fixtures/CODEOWNERS.example');
+
+        $this->assertEquals([
+            new Pattern('*', ['@global-owner1', '@global-owner2']),
+            new Pattern('*.js', ['@js-owner']),
+            new Pattern('*.go', ['docs@example.com']),
+            new Pattern('/build/logs/', ['@doctocat']),
+            new Pattern('docs/*', ['docs@example.com']),
+            new Pattern('apps/', ['@octocat']),
+            new Pattern('/docs/', ['@doctocat']),
+        ], $patterns);
+    }
+
+    public function testParsingStringResultsInPatterns()
+    {
+        $patterns = (new Parser())->parseString(file_get_contents(__DIR__ . '/Fixtures/CODEOWNERS.example'));
 
         $this->assertEquals([
             new Pattern('*', ['@global-owner1', '@global-owner2']),

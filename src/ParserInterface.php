@@ -13,5 +13,12 @@ interface ParserInterface
      * @return Pattern[]
      * @throws UnableToParseException
      */
-    public function parse(string $file): array;
+    public function parseFile(string $file): array;
+
+    /**
+     * @param string $lines
+     * @return Pattern[]
+     * @throws UnableToParseException
+     */
+    public function parseString(string $lines): array;
 }
