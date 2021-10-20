@@ -28,7 +28,11 @@ final class Parser implements ParserInterface
         return $this->parseIterable(explode(PHP_EOL, $lines));
     }
 
-    private function parseIterable(iterable $lines)
+    /**
+     * @param iterable<string> $lines
+     * @return Pattern[]
+     */
+    private function parseIterable(iterable $lines): array
     {
         $patterns = [];
 
