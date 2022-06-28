@@ -13,7 +13,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.4",
-        "vimeo/psalm": "^4.2",
+        "vimeo/psalm": "^4.21",
         "squizlabs/php_codesniffer": "^3.5"
     }
 }
