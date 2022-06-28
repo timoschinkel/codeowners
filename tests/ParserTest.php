@@ -51,6 +51,9 @@ class ParserTest extends TestCase
             new Pattern('docs/*', ['docs@example.com']),
             new Pattern('apps/', ['@octocat']),
             new Pattern('/docs/', ['@doctocat']),
+            new Pattern('**/foo', ['@doctocat']),
+            new Pattern('abc/**', ['@doctocat']),
+            new Pattern('a/**/b', ['@doctocat']),
         ], $patterns);
     }
 
@@ -66,6 +69,9 @@ class ParserTest extends TestCase
             new Pattern('docs/*', ['docs@example.com']),
             new Pattern('apps/', ['@octocat']),
             new Pattern('/docs/', ['@doctocat']),
+            new Pattern('**/foo', ['@doctocat']),
+            new Pattern('abc/**', ['@doctocat']),
+            new Pattern('a/**/b', ['@doctocat']),
         ], $patterns);
     }
 }

@@ -66,6 +66,11 @@ class PatternMatcherTest extends TestCase
             // does NOT match "foo/bar/file.ext"
 
             // **
+            [new Pattern('**/c', ['@owner']), 'a/c'],
+            [new Pattern('**/c', ['@owner']), 'b/c'],
+            [new Pattern('**/c', ['@owner']), 'a/b/c'],
+            [new Pattern('a/**', ['@owner']), 'a/b'],
+            [new Pattern('a/**', ['@owner']), 'a/b/c'],
             [new Pattern('a/**/b', ['@owner']), 'a/b'],
             [new Pattern('a/**/b', ['@owner']), 'a/x/b'],
             [new Pattern('a/**/b', ['@owner']), 'a/x/y/b'],

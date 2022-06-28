@@ -38,6 +38,22 @@ apps/ @octocat
 # directory in the root of your repository.
 /docs/ @doctocat
 
+# A leading "**" followed by a slash means match in all directories.
+# For example, "**/foo" matches file or directory "foo" anywhere,
+# the same as pattern "foo". "**/foo/bar" matches file or directory
+# "bar" anywhere that is directly under directory "foo".
+**/foo @doctocat
+
+# A trailing "/**" matches everything inside.
+# For example, "abc/**" matches all files inside directory "abc"
+# with infinite depth.
+abc/** @doctocat
+
+# A slash followed by two consecutive asterisks then a slash ma
+# zero or more directories. For example, "a/**/b" matches "a/b",
+# "a/x/b", "a/x/y/b" and so on.
+a/**/b @doctocat
+
 # In this example nobody owns the files
 # This line should be ignored by the parser.
 /src
