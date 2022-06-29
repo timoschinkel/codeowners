@@ -63,7 +63,7 @@ final class PatternMatcher implements PatternMatcherInterface
                 '?' => '[^\/]',
                 '**' => '.*',
                 '/**' => '\/.*',
-                '**/' => '.*',
+                '**/' => '.*\/',
                 '/**/' => '\/([^\/]+\/)*',
             ];
 

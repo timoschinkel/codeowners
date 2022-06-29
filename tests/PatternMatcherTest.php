@@ -134,6 +134,7 @@ class PatternMatcherTest extends TestCase
 
             // **
             [new Pattern('**/foo', ['@owner']), 'foo.ext'],
+            [new Pattern('**/foo', ['@owner']), 'bar-foo/file.ext'],
             [new Pattern('foo/**', ['@owner']), 'foo.ext'],
         ];
     }
