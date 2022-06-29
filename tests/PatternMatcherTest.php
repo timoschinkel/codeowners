@@ -131,6 +131,10 @@ class PatternMatcherTest extends TestCase
             [new Pattern('*.ext', ['@owner']), 'fooext'],
             [new Pattern('*.ext', ['@owner']), 'foo/ext'],
             [new Pattern('foo/*', ['@owner']), 'foo/bar/file.ext'],
+
+            // **
+            [new Pattern('**/foo', ['@owner']), 'foo.ext'],
+            [new Pattern('foo/**', ['@owner']), 'foo.ext'],
         ];
     }
 }
