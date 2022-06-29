@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2022-06-29
+### Added
+- Added support for trailing `/**` and leading `**/` patterns - [#20](https://github.com/timoschinkel/codeowners/pull/20) by martinssipenko
+
+### Changed
+- Update Psalm and remove deprecated totallyTyped attribute - [#21](https://github.com/timoschinkel/codeowners/pull/21) by martinssipenko
+
 ## [2.0.0] - 2021-10-20
 ### Added
 - Added `ParserInterface::parseString()` - [Issue #16](https://github.com/timoschinkel/codeowners/issues/16) by WyriHaximus
