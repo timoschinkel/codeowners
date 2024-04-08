@@ -62,8 +62,8 @@ final class Parser implements ParserInterface
             return null;
         }
 
-        if (preg_match('/^(?P<file_pattern>[^\s]+)\s+(?P<owners>.+)$/si', $line, $matches) !== 0) {
-            $owners = preg_split('/\s+/', $matches['owners']);
+        if (preg_match('/^(?P<file_pattern>[^\s]+)\s+(?P<owners>[^#]+)/si', $line, $matches) !== 0) {
+            $owners = preg_split('/\s+/', trim($matches['owners']));
             return new Pattern($matches['file_pattern'], $owners);
         }
 
