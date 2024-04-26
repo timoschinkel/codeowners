@@ -59,7 +59,7 @@ final class PatternMatcher implements PatternMatcherInterface
 
         $regex = join(array_map(function (string $part) use ($delimiter): string {
             $replacements = [
-                '*' => '[^\/]+',
+                '*' => '[^\/]*',
                 '?' => '[^\/]',
                 '**' => '.*',
                 '/**' => '\/.*',
