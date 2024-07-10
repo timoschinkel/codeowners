@@ -29,7 +29,7 @@ final class PatternMatcher implements PatternMatcherInterface
         );
 
         if (count($matchedPatterns) === 0) {
-            throw new NoMatchFoundException("Unable to find a pattern to match ${filename}");
+            throw new NoMatchFoundException("Unable to find a pattern to match {$filename}");
         }
 
         return end($matchedPatterns);
