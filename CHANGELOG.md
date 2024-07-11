@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.2.2] - 2024-07-10
 ### Changed
-- Update deprecated string interpolation usage
+- Update deprecated string interpolation usage - [#33](https://github.com/timoschinkel/codeowners/pull/33) by kchung
 
 ## [2.2.1] - 2024-04-26
 ### Changed
