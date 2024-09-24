@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.2.3] - 2024-09-24
 ### Changed
-- Add optional source and line number information to patterns - TBD
+- Add optional source and line number information to patterns - [#34](https://github.com/timoschinkel/codeowners/pull/34)
  
 ## [2.2.2] - 2024-07-10
 ### Changed
