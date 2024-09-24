@@ -12,10 +12,13 @@ final class Pattern
     /** @var string[] */
     private $owners;
 
-    public function __construct(string $pattern, array $owners)
+    private ?SourceInfo $sourceInfo;
+
+    public function __construct(string $pattern, array $owners, ?SourceInfo $sourceInfo = null)
     {
         $this->pattern = $pattern;
         $this->owners = $owners;
+        $this->sourceInfo = $sourceInfo;
     }
 
     public function getPattern(): string
@@ -26,5 +29,10 @@ final class Pattern
     public function getOwners(): array
     {
         return $this->owners;
+    }
+
+    public function getSourceInfo(): ?SourceInfo
+    {
+        return $this->sourceInfo;
     }
 }

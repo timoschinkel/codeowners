@@ -15,7 +15,7 @@ final class Parser implements ParserInterface
      */
     public function parseFile(string $file): array
     {
-        return $this->parseIterable($this->getFileIterable($file));
+        return $this->parseIterable($this->getFileIterable($file), $file);
     }
 
     /**
@@ -23,22 +23,23 @@ final class Parser implements ParserInterface
      * @return Pattern[]
      * @throws UnableToParseException
      */
-    public function parseString(string $lines): array
+    public function parseString(string $lines, ?string $filename = ''): array
     {
-        return $this->parseIterable(explode(PHP_EOL, $lines));
+        return $this->parseIterable(explode(PHP_EOL, $lines), $filename);
     }
 
     /**
      * @param iterable<string> $lines
      * @return Pattern[]
      */
-    private function parseIterable(iterable $lines): array
+    private function parseIterable(iterable $lines, ?string $filename = null): array
     {
         $patterns = [];
 
-        foreach ($lines as $line) {
+        foreach ($lines as $index => $line) {
             $line = trim($line);
-            $pattern = $this->parseLine($line);
+            $sourcInfo = $filename !== null ? new SourceInfo($filename, $index + 1) : null;
+            $pattern = $this->parseLine($line, $sourcInfo);
 
             if ($pattern instanceof Pattern) {
                 $patterns[] = $pattern;
@@ -48,7 +49,7 @@ final class Parser implements ParserInterface
         return $patterns;
     }
 
-    private function parseLine(string $line): ?Pattern
+    private function parseLine(string $line, ?SourceInfo $sourceInfo): ?Pattern
     {
         $line = trim($line);
 
@@ -64,7 +65,7 @@ final class Parser implements ParserInterface
 
         if (preg_match('/^(?P<file_pattern>[^\s]+)\s+(?P<owners>[^#]+)/si', $line, $matches) !== 0) {
             $owners = preg_split('/\s+/', trim($matches['owners']));
-            return new Pattern($matches['file_pattern'], $owners);
+            return new Pattern($matches['file_pattern'], $owners, $sourceInfo);
         }
 
         return null;
