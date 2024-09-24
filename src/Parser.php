@@ -38,8 +38,8 @@ final class Parser implements ParserInterface
 
         foreach ($lines as $index => $line) {
             $line = trim($line);
-            $sourcInfo = $filename !== null ? new SourceInfo($filename, $index + 1) : null;
-            $pattern = $this->parseLine($line, $sourcInfo);
+            $sourceInfo = $filename !== null ? new SourceInfo($filename, $index + 1) : null;
+            $pattern = $this->parseLine($line, $sourceInfo);
 
             if ($pattern instanceof Pattern) {
                 $patterns[] = $pattern;
