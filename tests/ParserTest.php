@@ -127,32 +127,32 @@ class ParserTest extends TestCase
             new Pattern(
                 'docs/*',
                 ['docs@example.com'],
-                new SourceInfo('', 31)
+                new SourceInfo(null, 31)
             ),
             new Pattern(
                 'apps/',
                 ['@octocat'],
-                new SourceInfo('', 35)
+                new SourceInfo(null, 35)
             ),
             new Pattern(
                 '/docs/',
                 ['@doctocat'],
-                new SourceInfo('', 39)
+                new SourceInfo(null, 39)
             ),
             new Pattern(
                 '**/foo',
                 ['@doctocat'],
-                new SourceInfo('', 45)
+                new SourceInfo(null, 45)
             ),
             new Pattern(
                 'abc/**',
                 ['@doctocat'],
-                new SourceInfo('', 50)
+                new SourceInfo(null, 50)
             ),
             new Pattern(
                 'a/**/b',
                 ['@doctocat'],
-                new SourceInfo('', 55)
+                new SourceInfo(null, 55)
             ),
         ], $patterns);
     }

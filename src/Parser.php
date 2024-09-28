@@ -20,16 +20,18 @@ final class Parser implements ParserInterface
 
     /**
      * @param string $lines
+     * @param ?string $filename
      * @return Pattern[]
      * @throws UnableToParseException
      */
-    public function parseString(string $lines, ?string $filename = ''): array
+    public function parseString(string $lines, ?string $filename = null): array
     {
         return $this->parseIterable(explode(PHP_EOL, $lines), $filename);
     }
 
     /**
      * @param iterable<string> $lines
+     * @param ?string $filename
      * @return Pattern[]
      */
     private function parseIterable(iterable $lines, ?string $filename = null): array
@@ -38,8 +40,7 @@ final class Parser implements ParserInterface
 
         foreach ($lines as $index => $line) {
             $line = trim($line);
-            $sourceInfo = $filename !== null ? new SourceInfo($filename, $index + 1) : null;
-            $pattern = $this->parseLine($line, $sourceInfo);
+            $pattern = $this->parseLine($line, new SourceInfo($filename, $index + 1));
 
             if ($pattern instanceof Pattern) {
                 $patterns[] = $pattern;
