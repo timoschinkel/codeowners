@@ -7,6 +7,7 @@ namespace CodeOwners\Tests;
 use CodeOwners\Exception\UnableToParseException;
 use CodeOwners\Parser;
 use CodeOwners\Pattern;
+use CodeOwners\SourceInfo;
 use CodeOwners\Tests\Fixtures\FileOperations;
 use PHPUnit\Framework\TestCase;
 
@@ -41,19 +42,60 @@ class ParserTest extends TestCase
 
     public function testParsingResultsInPatterns()
     {
-        $patterns = (new Parser())->parseFile(__DIR__ . '/Fixtures/CODEOWNERS.example');
+        $filename = __DIR__ . '/Fixtures/CODEOWNERS.example';
+        $patterns = (new Parser())->parseFile($filename);
 
         $this->assertEquals([
-            new Pattern('*', ['@global-owner1', '@global-owner2']),
-            new Pattern('*.js', ['@js-owner']),
-            new Pattern('*.go', ['docs@example.com']),
-            new Pattern('/build/logs/', ['@doctocat']),
-            new Pattern('docs/*', ['docs@example.com']),
-            new Pattern('apps/', ['@octocat']),
-            new Pattern('/docs/', ['@doctocat']),
-            new Pattern('**/foo', ['@doctocat']),
-            new Pattern('abc/**', ['@doctocat']),
-            new Pattern('a/**/b', ['@doctocat']),
+            new Pattern(
+                '*',
+                ['@global-owner1', '@global-owner2'],
+                new SourceInfo($filename, 10)
+            ),
+            new Pattern(
+                '*.js',
+                ['@js-owner'],
+                new SourceInfo($filename, 16)
+            ),
+            new Pattern(
+                '*.go',
+                ['docs@example.com'],
+                new SourceInfo($filename, 21)
+            ),
+            new Pattern(
+                '/build/logs/',
+                ['@doctocat'],
+                new SourceInfo($filename, 26)
+            ),
+            new Pattern(
+                'docs/*',
+                ['docs@example.com'],
+                new SourceInfo($filename, 31)
+            ),
+            new Pattern(
+                'apps/',
+                ['@octocat'],
+                new SourceInfo($filename, 35)
+            ),
+            new Pattern(
+                '/docs/',
+                ['@doctocat'],
+                new SourceInfo($filename, 39)
+            ),
+            new Pattern(
+                '**/foo',
+                ['@doctocat'],
+                new SourceInfo($filename, 45)
+            ),
+            new Pattern(
+                'abc/**',
+                ['@doctocat'],
+                new SourceInfo($filename, 50)
+            ),
+            new Pattern(
+                'a/**/b',
+                ['@doctocat'],
+                new SourceInfo($filename, 55)
+            ),
         ], $patterns);
     }
 
@@ -62,16 +104,117 @@ class ParserTest extends TestCase
         $patterns = (new Parser())->parseString(file_get_contents(__DIR__ . '/Fixtures/CODEOWNERS.example'));
 
         $this->assertEquals([
-            new Pattern('*', ['@global-owner1', '@global-owner2']),
-            new Pattern('*.js', ['@js-owner']),
-            new Pattern('*.go', ['docs@example.com']),
-            new Pattern('/build/logs/', ['@doctocat']),
-            new Pattern('docs/*', ['docs@example.com']),
-            new Pattern('apps/', ['@octocat']),
-            new Pattern('/docs/', ['@doctocat']),
-            new Pattern('**/foo', ['@doctocat']),
-            new Pattern('abc/**', ['@doctocat']),
-            new Pattern('a/**/b', ['@doctocat']),
+            new Pattern(
+                '*',
+                ['@global-owner1', '@global-owner2'],
+                new SourceInfo('', 10)
+            ),
+            new Pattern(
+                '*.js',
+                ['@js-owner'],
+                new SourceInfo('', 16)
+            ),
+            new Pattern(
+                '*.go',
+                ['docs@example.com'],
+                new SourceInfo('', 21)
+            ),
+            new Pattern(
+                '/build/logs/',
+                ['@doctocat'],
+                new SourceInfo('', 26)
+            ),
+            new Pattern(
+                'docs/*',
+                ['docs@example.com'],
+                new SourceInfo(null, 31)
+            ),
+            new Pattern(
+                'apps/',
+                ['@octocat'],
+                new SourceInfo(null, 35)
+            ),
+            new Pattern(
+                '/docs/',
+                ['@doctocat'],
+                new SourceInfo(null, 39)
+            ),
+            new Pattern(
+                '**/foo',
+                ['@doctocat'],
+                new SourceInfo(null, 45)
+            ),
+            new Pattern(
+                'abc/**',
+                ['@doctocat'],
+                new SourceInfo(null, 50)
+            ),
+            new Pattern(
+                'a/**/b',
+                ['@doctocat'],
+                new SourceInfo(null, 55)
+            ),
+        ], $patterns);
+    }
+
+    public function testParsingStringWithOptionalFilename()
+    {
+        $patterns = (new Parser())->parseString(
+            file_get_contents(__DIR__ . '/Fixtures/CODEOWNERS.example'),
+            'anonymous'
+        );
+
+        $this->assertEquals([
+            new Pattern(
+                '*',
+                ['@global-owner1', '@global-owner2'],
+                new SourceInfo('anonymous', 10)
+            ),
+            new Pattern(
+                '*.js',
+                ['@js-owner'],
+                new SourceInfo('anonymous', 16)
+            ),
+            new Pattern(
+                '*.go',
+                ['docs@example.com'],
+                new SourceInfo('anonymous', 21)
+            ),
+            new Pattern(
+                '/build/logs/',
+                ['@doctocat'],
+                new SourceInfo('anonymous', 26)
+            ),
+            new Pattern(
+                'docs/*',
+                ['docs@example.com'],
+                new SourceInfo('anonymous', 31)
+            ),
+            new Pattern(
+                'apps/',
+                ['@octocat'],
+                new SourceInfo('anonymous', 35)
+            ),
+            new Pattern(
+                '/docs/',
+                ['@doctocat'],
+                new SourceInfo('anonymous', 39)
+            ),
+            new Pattern(
+                '**/foo',
+                ['@doctocat'],
+                new SourceInfo('anonymous', 45)
+            ),
+            new Pattern(
+                'abc/**',
+                ['@doctocat'],
+                new SourceInfo('anonymous', 50)
+            ),
+            new Pattern(
+                'a/**/b',
+                ['@doctocat'],
+                new SourceInfo('anonymous', 55)
+            ),
         ], $patterns);
     }
 }
