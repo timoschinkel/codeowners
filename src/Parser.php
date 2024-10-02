@@ -50,7 +50,7 @@ final class Parser implements ParserInterface
         return $patterns;
     }
 
-    private function parseLine(string $line, ?SourceInfo $sourceInfo): ?Pattern
+    private function parseLine(string $line, SourceInfo $sourceInfo): ?Pattern
     {
         $line = trim($line);
 
