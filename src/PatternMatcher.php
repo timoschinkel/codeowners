@@ -57,6 +57,12 @@ final class PatternMatcher implements PatternMatcherInterface
             PREG_SPLIT_DELIM_CAPTURE
         );
 
+        if (!is_array($parts)) {
+            // This should not happen as we have full control over the regular expression. In case `preg_split()` fails
+            // an E_WARNING will be emitted by `preg_split()`, so we're not doing that twice.
+            return false;
+        }
+
         $regex = join(array_map(function (string $part) use ($delimiter): string {
             $replacements = [
                 '*' => '[^\/]*',

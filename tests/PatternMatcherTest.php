@@ -30,7 +30,7 @@ class PatternMatcherTest extends TestCase
         );
     }
 
-    public function provideCorrectMatchIsReturnedForFilename(): array
+    public static function provideCorrectMatchIsReturnedForFilename(): array
     {
         return [
             [new Pattern('foo', ['@owner']), 'foo'],
@@ -112,7 +112,7 @@ class PatternMatcherTest extends TestCase
         }
     }
 
-    public function provideNoMatchFoundExceptionIsThrownForFilename(): array
+    public static function provideNoMatchFoundExceptionIsThrownForFilename(): array
     {
         return [
             [new Pattern('foo', ['@owner']), 'foo.ext'],

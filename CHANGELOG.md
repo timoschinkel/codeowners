@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.1] - 2025-01-29
+### Removed
+- Support for PHP 8.0 
+
+### Added
+- Inspections - and thus support - for PHP 8.3 and 8.4
+
+### Changed
+- Upgrade dev dependencies
+  - `vimeo/psalm` to version 6
+  - `phpunit/phpunit` to version 10
+
 ## [2.3.0] - 2024-10-02
 ### Changed
 - Add optional source and line number information to patterns - [#34](https://github.com/timoschinkel/codeowners/pull/34) by kellegous
