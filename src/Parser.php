@@ -13,7 +13,7 @@ final class Parser implements ParserInterface
      * @return Pattern[]
      * @throws UnableToParseException
      */
-    public function parseFile(string $file): array
+    #[\Override] public function parseFile(string $file): array
     {
         return $this->parseIterable($this->getFileIterable($file), $file);
     }
@@ -24,7 +24,7 @@ final class Parser implements ParserInterface
      * @return Pattern[]
      * @throws UnableToParseException
      */
-    public function parseString(string $lines, ?string $filename = null): array
+    #[\Override] public function parseString(string $lines, ?string $filename = null): array
     {
         return $this->parseIterable(explode(PHP_EOL, $lines), $filename);
     }

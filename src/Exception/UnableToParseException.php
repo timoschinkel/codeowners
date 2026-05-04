@@ -6,6 +6,6 @@ namespace CodeOwners\Exception;
 
 use RuntimeException;
 
-class UnableToParseException extends RuntimeException
+final class UnableToParseException extends RuntimeException
 {
 }
