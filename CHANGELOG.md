@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Marked `\CodeOwners\Exception\NoMatchFoundException` and `\CodeOwners\Exception\UnableToParseException` as final
 
-## Backwards compatibility breaking changes
+### Backwards compatibility breaking changes
 If you are extending `\CodeOwners\Exception\NoMatchFoundException` or `\CodeOwners\Exception\UnableToParseException` in your code, you will need to update your code to not extend these classes.
 
 ## [2.3.1] - 2025-01-29
