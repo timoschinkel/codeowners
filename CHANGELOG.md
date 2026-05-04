@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2026-05-04
+### Changed
+- Marked `\CodeOwners\Exception\NoMatchFoundException` and `\CodeOwners\Exception\UnableToParseException` as final
+
+## Backwards compatibility breaking changes
+If you are extending `\CodeOwners\Exception\NoMatchFoundException` or `\CodeOwners\Exception\UnableToParseException` in your code, you will need to update your code to not extend these classes.
+
 ## [2.3.1] - 2025-01-29
 ### Removed
 - Support for PHP 8.0 

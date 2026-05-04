@@ -19,7 +19,7 @@ final class PatternMatcher implements PatternMatcherInterface
         $this->patterns = $patterns;
     }
 
-    public function match(string $filename): Pattern
+    #[\Override] public function match(string $filename): Pattern
     {
         $matchedPatterns = array_filter(
             $this->patterns,
