@@ -96,6 +96,31 @@ class ParserTest extends TestCase
                 ['@doctocat'],
                 new SourceInfo($filename, 55)
             ),
+            new Pattern(
+                '**/with spaces',
+                ['@doctocat'],
+                new SourceInfo($filename, 63)
+            ),
+            new Pattern(
+                '/owners/username',
+                ['@username'],
+                new SourceInfo($filename, 67)
+            ),
+            new Pattern(
+                '/owners/team-name',
+                ['@org/team-name'],
+                new SourceInfo($filename, 68)
+            ),
+            new Pattern(
+                '/owners/email',
+                ['user@example.com'],
+                new SourceInfo($filename, 69)
+            ),
+            new Pattern(
+                '/owners/role',
+                ['@@maintainer'],
+                new SourceInfo($filename, 70)
+            ),
         ], $patterns);
     }
 
@@ -153,6 +178,31 @@ class ParserTest extends TestCase
                 'a/**/b',
                 ['@doctocat'],
                 new SourceInfo(null, 55)
+            ),
+            new Pattern(
+                '**/with spaces',
+                ['@doctocat'],
+                new SourceInfo(null, 63)
+            ),
+            new Pattern(
+                '/owners/username',
+                ['@username'],
+                new SourceInfo(null, 67)
+            ),
+            new Pattern(
+                '/owners/team-name',
+                ['@org/team-name'],
+                new SourceInfo(null, 68)
+            ),
+            new Pattern(
+                '/owners/email',
+                ['user@example.com'],
+                new SourceInfo(null, 69)
+            ),
+            new Pattern(
+                '/owners/role',
+                ['@@maintainer'],
+                new SourceInfo(null, 70)
             ),
         ], $patterns);
     }
@@ -214,6 +264,31 @@ class ParserTest extends TestCase
                 'a/**/b',
                 ['@doctocat'],
                 new SourceInfo('anonymous', 55)
+            ),
+            new Pattern(
+                '**/with spaces',
+                ['@doctocat'],
+                new SourceInfo('anonymous', 63)
+            ),
+            new Pattern(
+                '/owners/username',
+                ['@username'],
+                new SourceInfo('anonymous', 67)
+            ),
+            new Pattern(
+                '/owners/team-name',
+                ['@org/team-name'],
+                new SourceInfo('anonymous', 68)
+            ),
+            new Pattern(
+                '/owners/email',
+                ['user@example.com'],
+                new SourceInfo('anonymous', 69)
+            ),
+            new Pattern(
+                '/owners/role',
+                ['@@maintainer'],
+                new SourceInfo('anonymous', 70)
             ),
         ], $patterns);
     }

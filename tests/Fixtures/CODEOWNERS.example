@@ -57,3 +57,17 @@ a/**/b @doctocat
 # In this example nobody owns the files
 # This line should be ignored by the parser.
 /src
+
+# Spaces are allowed in the pattern, but they must be escaped with backslashes.
+# See: https://github.com/orgs/community/discussions/48834
+**/with\ spaces @doctocat
+**/invalid\  spaces @doctocat
+
+# Allowed patterns for owners are
+/owners/username @username
+/owners/team-name @org/team-name
+/owners/email user@example.com
+/owners/role @@maintainer # explicitly allowed for GitLab, not explicitly disallowed for others
+
+# Unallowed patterns for users are
+/owners/name name

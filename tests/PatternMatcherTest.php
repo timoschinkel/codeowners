@@ -80,6 +80,9 @@ class PatternMatcherTest extends TestCase
 
             // Combined (edge) cases
             [new Pattern('**/*Foo**', ['@owner']), 'example/FooSomething'],
+
+            // Spaces in the pattern
+            [new Pattern('**/with spaces', ['@owner']), 'example/with spaces/file.ext'],
         ];
     }
 
