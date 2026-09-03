@@ -23,7 +23,7 @@ use CodeOwners\Parser;
 use CodeOwners\PatternMatcher;
 
 try {
-    $patterns = (new Parser())->parseFile($filename);
+    $patterns = (new GitHubParser())->parseFile($filename);
     $pattern = (new PatternMatcher(...$patterns))->match($filename);
 } catch (\CodeOwners\Exception\UnableToParseException $exception) {
     // unable to read or parse file
@@ -41,7 +41,7 @@ use CodeOwners\Parser;
 use CodeOwners\PatternMatcher;
 
 try {
-    $patterns = (new Parser())->parseString($contents);
+    $patterns = (new GitLabParser())->parseString($contents);
     $pattern = (new PatternMatcher(...$patterns))->match($filename);
 } catch (\CodeOwners\Exception\UnableToParseException $exception) {
     // unable to read or parse file
@@ -49,6 +49,14 @@ try {
     // no match found
 }
 ```
+
+### Parsers
+GitHub, GitLab and BitBucket all have their own features when it comes to code owner files. That's why there are three parsers available:
+- `GitHubParser`; this parser does strict parsing of owners, and allows entries without owners. This will result in a `Pattern` with an empty owners array.
+- `GitLabParser`; this parser does strict parsing of owners, and has support for sections.
+- `BitBucketParser`
+
+There's also a "plain" `Parser`. This parser does not support any of the specifics and is deliberately unchanged - since the introduction of the vendor specific parsers - to guarantee backwards compatibility. This parser might be deprecated, and thus removed, in the future. The recommendation is to use one of the vendor specific parsers. 
 
 ## Known limitations
 Currently the library does not handle spaces in file paths.

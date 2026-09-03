@@ -55,5 +55,5 @@ abc/** @doctocat
 a/**/b @doctocat
 
 # In this example nobody owns the files
-# This line should be ignored by the parser.
+# This line should be parsed as a file without an explicit owner.
 /src
