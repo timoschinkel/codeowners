@@ -71,13 +71,18 @@ abstract class BaseParser implements ParserInterface
             return null;
         }
 
-        if (preg_match('/^(?P<file_pattern>[^\s]+)\s+(?P<owners>[^#]+)/si', $line, $matches) !== 0) {
-            $owners = preg_split('/\s+/', trim($matches['owners']));
+        if (preg_match('/^(?P<file_pattern>[^\s]+)(\s+(?P<owners>[^#]*))?/si', $line, $matches) !== 0) {
+            $owners = preg_split('/\s+/', trim($matches['owners'] ?? ''), -1, PREG_SPLIT_NO_EMPTY);
             if (!is_array($owners)) {
                 // This should not happen as we have full control over the regular expression. In case `preg_split()`
                 // fails an E_WARNING will be emitted by `preg_split()`, so we're not doing that twice.
                 throw new UnableToParseException('Unable to extract owners from line: ' . $line);
             }
+
+            if ($this->options->requireOwners && count($owners) === 0) {
+                return null;
+            }
+
             return new Pattern($matches['file_pattern'], $owners, $sourceInfo);
         }
 
