@@ -44,10 +44,20 @@ abstract class BaseParser implements ParserInterface
     private function parseIterable(iterable $lines, ?string $filename = null): array
     {
         $patterns = [];
+        $section = null;
 
         foreach ($lines as $index => $line) {
             $line = trim($line);
-            $pattern = $this->parseLine($line, new SourceInfo($filename, $index + 1));
+
+            if ($this->isSection($line)) {
+                if (!$this->options->supportSectionHeaders) {
+                    continue; // skip
+                }
+
+                $section = $this->parseSection($line);
+            }
+
+            $pattern = $this->parseLine($line, new SourceInfo($filename, $index + 1), $section);
 
             if ($pattern instanceof Pattern) {
                 $patterns[] = $pattern;
@@ -57,11 +67,11 @@ abstract class BaseParser implements ParserInterface
         return $patterns;
     }
 
-    private function parseLine(string $line, SourceInfo $sourceInfo): ?Pattern
+    private function parseLine(string $line, SourceInfo $sourceInfo, ?Section $section): ?Pattern
     {
         $line = trim($line);
 
-        if (substr($line, 0, 1) === '#') {
+        if (str_starts_with($line, '#')) {
             // comment
             return null;
         }
@@ -83,11 +93,15 @@ abstract class BaseParser implements ParserInterface
                 throw new UnableToParseException('Unable to extract owners from line: ' . $line);
             }
 
+            if (count($owners) === 0 && $section !== null) {
+                $owners = $section->defaultOwners;
+            }
+
             if ($this->options->requireOwners && count($owners) === 0) {
                 return null;
             }
 
-            return new Pattern($matches['file_pattern'], $owners, $sourceInfo);
+            return new Pattern($matches['file_pattern'], $owners, $sourceInfo, $section);
         }
 
         return null;
@@ -116,5 +130,32 @@ abstract class BaseParser implements ParserInterface
             yield $line;
         }
         fclose($handle);
+    }
+
+    private function isSection(string $line): bool
+    {
+        return str_starts_with($line, '[') || str_starts_with($line, '^[');
+    }
+
+    private function parseSection(string $line): ?Section
+    {
+        if (
+            preg_match(
+                '/^(?P<optional>\^)?\[(?P<name>[^\]]+)\](\[(?P<approvals>\d+)\])?(?P<owners>(\s+[^\s]*@[^\s]+)*)$/',
+                $line,
+                $matches
+            )
+        ) {
+            $owners = preg_split('/\s+/', trim($matches['owners'] ?? ''), -1, PREG_SPLIT_NO_EMPTY);
+            if (!is_array($owners)) {
+                throw new UnableToParseException('Unable to extract owners from line: ' . $line);
+            }
+
+            $optional = isset($matches['optional']) && $matches['optional'] === '^';
+            $approvalsRequired = isset($matches['approvals']) ? (int)$matches['approvals'] : null;
+
+            return new Section($matches['name'], $optional, $approvalsRequired, $owners);
+        }
+        return null;
     }
 }

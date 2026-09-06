@@ -79,6 +79,46 @@ final class ParserTestCase extends BaseParserTestCase
                 ['username'],
                 new SourceInfo($filename, 63),
             ),
+            new Pattern(
+                '/feature/section-without-owners/with-owner',
+                ['@doctocat'],
+                new SourceInfo($filename, 67),
+            ),
+            new Pattern(
+                '/feature/section-without-owners-with-number-of-reviews/with-owner',
+                ['@doctocat'],
+                new SourceInfo($filename, 71),
+            ),
+            new Pattern(
+                '/feature/optional-section-without-owners/with-owner',
+                ['@doctocat'],
+                new SourceInfo($filename, 75),
+            ),
+            new Pattern(
+                '/feature/optional-section-without-owners-with-number-of-reviews/with-owner',
+                ['@doctocat'],
+                new SourceInfo($filename, 79),
+            ),
+            new Pattern(
+                '/feature/section-with-owners/with-owner',
+                ['@doctocat'],
+                new SourceInfo($filename, 83),
+            ),
+            new Pattern(
+                '/feature/section-with-owners-with-number-of-reviews/with-owner',
+                ['@doctocat'],
+                new SourceInfo($filename, 87),
+            ),
+            new Pattern(
+                '/feature/optional-section-with-owners/with-owner',
+                ['@doctocat'],
+                new SourceInfo($filename, 91),
+            ),
+            new Pattern(
+                '/feature/optional-section-with-owners-with-number-of-reviews/with-owner',
+                ['@doctocat'],
+                new SourceInfo($filename, 95),
+            ),
         ];
     }
 }

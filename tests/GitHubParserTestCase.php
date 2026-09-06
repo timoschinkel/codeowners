@@ -79,6 +79,86 @@ final class GitHubParserTestCase extends BaseParserTestCase
                 ['@username', '@org/team-name', 'user@example.com'],
                 new SourceInfo($filename, 62),
             ),
+            new Pattern(
+                '/feature/section-without-owners/with-owner',
+                ['@doctocat'],
+                new SourceInfo($filename, 67),
+            ),
+            new Pattern(
+                '/feature/section-without-owners/without-owner',
+                [],
+                new SourceInfo($filename, 68),
+            ),
+            new Pattern(
+                '/feature/section-without-owners-with-number-of-reviews/with-owner',
+                ['@doctocat'],
+                new SourceInfo($filename, 71),
+            ),
+            new Pattern(
+                '/feature/section-without-owners-with-number-of-reviews/without-owner',
+                [],
+                new SourceInfo($filename, 72),
+            ),
+            new Pattern(
+                '/feature/optional-section-without-owners/with-owner',
+                ['@doctocat'],
+                new SourceInfo($filename, 75),
+            ),
+            new Pattern(
+                '/feature/optional-section-without-owners/without-owner',
+                [],
+                new SourceInfo($filename, 76),
+            ),
+            new Pattern(
+                '/feature/optional-section-without-owners-with-number-of-reviews/with-owner',
+                ['@doctocat'],
+                new SourceInfo($filename, 79),
+            ),
+            new Pattern(
+                '/feature/optional-section-without-owners-with-number-of-reviews/without-owner',
+                [],
+                new SourceInfo($filename, 80),
+            ),
+            new Pattern(
+                '/feature/section-with-owners/with-owner',
+                ['@doctocat'],
+                new SourceInfo($filename, 83),
+            ),
+            new Pattern(
+                '/feature/section-with-owners/without-owner',
+                [],
+                new SourceInfo($filename, 84),
+            ),
+            new Pattern(
+                '/feature/section-with-owners-with-number-of-reviews/with-owner',
+                ['@doctocat'],
+                new SourceInfo($filename, 87),
+            ),
+            new Pattern(
+                '/feature/section-with-owners-with-number-of-reviews/without-owner',
+                [],
+                new SourceInfo($filename, 88),
+            ),
+            new Pattern(
+                '/feature/optional-section-with-owners/with-owner',
+                ['@doctocat'],
+                new SourceInfo($filename, 91),
+            ),
+            new Pattern(
+                '/feature/optional-section-with-owners/without-owner',
+                [],
+                new SourceInfo($filename, 92),
+            ),
+            new Pattern(
+                '/feature/optional-section-with-owners-with-number-of-reviews/with-owner',
+                ['@doctocat'],
+                new SourceInfo($filename, 95),
+            ),
+            new Pattern(
+                '/feature/optional-section-with-owners-with-number-of-reviews/without-owner',
+                [],
+                new SourceInfo($filename, 96),
+            ),
         ];
     }
 }

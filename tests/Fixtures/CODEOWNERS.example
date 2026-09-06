@@ -61,3 +61,36 @@ a/**/b @doctocat
 # Owners must either start with an @, or be an email address. Otherwise, the line is invalid and will be ignored.
 /feature/strict-owners @username @org/team-name user@example.com
 /feature/strict-owners/invalid username
+
+ # GitLab supports sections in different formats. Other parsers should ignore the section directives.
+[Section without owners]
+/feature/section-without-owners/with-owner @doctocat
+/feature/section-without-owners/without-owner
+
+[Section without owners with number of reviews][2]
+/feature/section-without-owners-with-number-of-reviews/with-owner @doctocat
+/feature/section-without-owners-with-number-of-reviews/without-owner
+
+^[Optional section without owners]
+/feature/optional-section-without-owners/with-owner @doctocat
+/feature/optional-section-without-owners/without-owner
+
+^[Optional section without owners with number of reviews][2]
+/feature/optional-section-without-owners-with-number-of-reviews/with-owner @doctocat
+/feature/optional-section-without-owners-with-number-of-reviews/without-owner
+
+[Section with owners] @octocat
+/feature/section-with-owners/with-owner @doctocat
+/feature/section-with-owners/without-owner
+
+[Section with owners with number of reviews][2] @octocat developers@email.com
+/feature/section-with-owners-with-number-of-reviews/with-owner @doctocat
+/feature/section-with-owners-with-number-of-reviews/without-owner
+
+^[Optional section with owners] @octocat
+/feature/optional-section-with-owners/with-owner @doctocat
+/feature/optional-section-with-owners/without-owner
+
+^[Optional section with owners with number of reviews][12] developers@email.com @octocat
+/feature/optional-section-with-owners-with-number-of-reviews/with-owner @doctocat
+/feature/optional-section-with-owners-with-number-of-reviews/without-owner
