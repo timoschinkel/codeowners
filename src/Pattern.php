@@ -16,8 +16,12 @@ final class Pattern
 
     private ?Section $section;
 
-    public function __construct(string $pattern, array $owners, ?SourceInfo $sourceInfo = null, ?Section $section = null)
-    {
+    public function __construct(
+        string $pattern,
+        array $owners,
+        ?SourceInfo $sourceInfo = null,
+        ?Section $section = null
+    ) {
         $this->pattern = $pattern;
         $this->owners = $owners;
         $this->sourceInfo = $sourceInfo;
