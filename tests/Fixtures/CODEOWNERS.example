@@ -57,3 +57,7 @@ a/**/b @doctocat
 # In this example nobody owns the files
 # This line should be parsed as a file without an explicit owner.
 /src
+
+# Owners must either start with an @, or be an email address. Otherwise, the line is invalid and will be ignored.
+/feature/strict-owners @username @org/team-name user@example.com
+/feature/strict-owners/invalid username

@@ -71,7 +71,11 @@ abstract class BaseParser implements ParserInterface
             return null;
         }
 
-        if (preg_match('/^(?P<file_pattern>[^\s]+)(\s+(?P<owners>[^#]*))?/si', $line, $matches) !== 0) {
+        $regex = $this->options->requireStrictOwners
+            ? '/^(?P<file_pattern>[^\s]+)\s*(?P<owners>(\s+[^\s]*@[^\s]+)*)\s*( #.*)?$/si'
+            : '/^(?P<file_pattern>[^\s]+)(\s+(?P<owners>[^#]*))?/si';
+
+        if (preg_match($regex, $line, $matches) !== 0) {
             $owners = preg_split('/\s+/', trim($matches['owners'] ?? ''), -1, PREG_SPLIT_NO_EMPTY);
             if (!is_array($owners)) {
                 // This should not happen as we have full control over the regular expression. In case `preg_split()`

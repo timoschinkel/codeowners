@@ -69,6 +69,16 @@ final class ParserTestCase extends BaseParserTestCase
                 ['@doctocat'],
                 new SourceInfo($filename, 55)
             ),
+            new Pattern(
+                '/feature/strict-owners',
+                ['@username', '@org/team-name', 'user@example.com'],
+                new SourceInfo($filename, 62),
+            ),
+            new Pattern(
+                '/feature/strict-owners/invalid',
+                ['username'],
+                new SourceInfo($filename, 63),
+            ),
         ];
     }
 }

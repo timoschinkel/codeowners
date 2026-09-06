@@ -74,6 +74,11 @@ final class GitHubParserTestCase extends BaseParserTestCase
                 [],
                 new SourceInfo($filename, 59)
             ),
+            new Pattern(
+                '/feature/strict-owners',
+                ['@username', '@org/team-name', 'user@example.com'],
+                new SourceInfo($filename, 62),
+            ),
         ];
     }
 }

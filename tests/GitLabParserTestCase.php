@@ -69,6 +69,11 @@ final class GitLabParserTestCase extends BaseParserTestCase
                 ['@doctocat'],
                 new SourceInfo($filename, 55)
             ),
+            new Pattern(
+                '/feature/strict-owners',
+                ['@username', '@org/team-name', 'user@example.com'],
+                new SourceInfo($filename, 62),
+            ),
         ];
     }
 }
