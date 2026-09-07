@@ -119,6 +119,11 @@ final class ParserTestCase extends BaseParserTestCase
                 ['@doctocat'],
                 new SourceInfo($filename, 95),
             ),
+            new Pattern(
+                '/feature/section/with-owner',
+                ['@doctocat'],
+                new SourceInfo($filename, 99),
+            ),
         ];
     }
 }

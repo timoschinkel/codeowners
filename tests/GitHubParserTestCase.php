@@ -159,6 +159,16 @@ final class GitHubParserTestCase extends BaseParserTestCase
                 [],
                 new SourceInfo($filename, 96),
             ),
+            new Pattern(
+                '/feature/section/with-owner',
+                ['@doctocat'],
+                new SourceInfo($filename, 99),
+            ),
+            new Pattern(
+                '/feature/section/without-owner',
+                [],
+                new SourceInfo($filename, 100),
+            ),
         ];
     }
 }

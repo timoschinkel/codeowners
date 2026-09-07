@@ -55,6 +55,7 @@ abstract class BaseParser implements ParserInterface
                 }
 
                 $section = $this->parseSection($line);
+                continue;
             }
 
             $pattern = $this->parseLine($line, new SourceInfo($filename, $index + 1), $section);

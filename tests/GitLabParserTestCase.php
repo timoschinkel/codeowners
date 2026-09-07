@@ -169,6 +169,24 @@ final class GitLabParserTestCase extends BaseParserTestCase
                     defaultOwners: ['developers@email.com', '@octocat']
                 ),
             ),
+            new Pattern(
+                '/feature/section/with-owner',
+                ['@doctocat'],
+                new SourceInfo($filename, 99),
+                new Section(
+                    'Section',
+                    defaultOwners: ['@octocat']
+                ),
+            ),
+            new Pattern(
+                '/feature/section/without-owner',
+                ['@octocat'],
+                new SourceInfo($filename, 100),
+                new Section(
+                    'Section',
+                    defaultOwners: ['@octocat']
+                ),
+            ),
         ];
     }
 }

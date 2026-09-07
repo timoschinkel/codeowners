@@ -94,3 +94,7 @@ a/**/b @doctocat
 ^[Optional section with owners with number of reviews][12] developers@email.com @octocat
 /feature/optional-section-with-owners-with-number-of-reviews/with-owner @doctocat
 /feature/optional-section-with-owners-with-number-of-reviews/without-owner
+
+[Section] @octocat
+/feature/section/with-owner @doctocat
+/feature/section/without-owner
