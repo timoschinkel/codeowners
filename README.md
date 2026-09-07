@@ -57,10 +57,7 @@ GitHub, GitLab and BitBucket all have their own features when it comes to code o
 
 NB. I hope to add a parser for BitBucket in the future.
 
-There's also a "plain" `Parser`. This parser does not support any of the specifics and is deliberately unchanged - since the introduction of the vendor specific parsers - to guarantee backwards compatibility. This parser might be deprecated, and thus removed, in the future. The recommendation is to use one of the vendor specific parsers. 
-
-## Known limitations
-Currently the library does not handle spaces in file paths.
+There's also a "plain" `Parser`. This parser does not support any of the specifics and is deliberately unchanged - since the introduction of the vendor specific parsers - to guarantee backwards compatibility. This parser might be deprecated, and thus removed, in the future. The recommendation is to use one of the vendor specific parsers.
 
 [github-code-owners]: https://help.github.com/articles/about-codeowners/
 [gitlab-code-owners]: https://docs.gitlab.com/ee/user/project/code_owners.html
