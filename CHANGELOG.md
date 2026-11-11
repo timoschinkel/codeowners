@@ -4,17 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.1] - 2026-11-11
+### Removed
+- Support for PHP 8.1 - [#45](https://github.com/timoschinkel/codeowners/pull/45)
+
+### Added
+- Inspections - and thus support - for PHP 8.5 - [#45](https://github.com/timoschinkel/codeowners/pull/45)
+
 ## [3.1.0] - 2026-09-08
 ### Added
 - Introduce `\CodeOwners\GitLabParser` and `\CodeOwners\GitHubParser` - [#41](https://github.com/timoschinkel/codeowners/pull/41)
 - Add support for spaces in patterns [#41](https://github.com/timoschinkel/codeowners/pull/41)
-
-## [3.0.1] - 2026-11-11
-### Removed
-- Support for PHP 8.1
-
-### Added
-- Inspections - and thus support - for PHP 8.5
 
 ## [3.0.0] - 2026-05-04
 ### Changed
