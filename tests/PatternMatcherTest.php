@@ -17,11 +17,7 @@ class PatternMatcherTest extends TestCase
         (new PatternMatcher())->match('non-existing.file');
     }
 
-    /**
-     * @dataProvider provideCorrectMatchIsReturnedForFilename
-     * @param Pattern $pattern
-     * @param string $filename
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideCorrectMatchIsReturnedForFilename')]
     public function testCorrectMatchIsReturnedForFilename(Pattern $pattern, string $filename): void
     {
         $this->assertEquals(
@@ -96,11 +92,7 @@ class PatternMatcherTest extends TestCase
         $this->assertEquals(['@owner-of-foo-bar'], $match->getOwners());
     }
 
-    /**
-     * @param Pattern $pattern
-     * @param string $filename
-     * @dataProvider provideNoMatchFoundExceptionIsThrownForFilename
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideNoMatchFoundExceptionIsThrownForFilename')]
     public function testNoMatchFoundExceptionIsThrownForFilename(Pattern $pattern, string $filename): void
     {
         try {
