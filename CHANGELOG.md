@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Introduce `\CodeOwners\GitLabParser` and `\CodeOwners\GitHubParser` - [#41](https://github.com/timoschinkel/codeowners/pull/41)
 - Add support for spaces in patterns [#41](https://github.com/timoschinkel/codeowners/pull/41)
 
+## [3.0.1] - 2026-11-11
+### Removed
+- Support for PHP 8.1
+
+### Added
+- Inspections - and thus support - for PHP 8.5
+
 ## [3.0.0] - 2026-05-04
 ### Changed
 - Marked `\CodeOwners\Exception\NoMatchFoundException` and `\CodeOwners\Exception\UnableToParseException` as final - [#38](https://github.com/timoschinkel/codeowners/pull/38)
